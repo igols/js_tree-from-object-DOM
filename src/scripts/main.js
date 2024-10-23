@@ -1,6 +1,6 @@
 'use strict';
 
-const food = {
+ const food = {
   Drink: {
     Wine: {},
     Schnaps: {},
@@ -21,7 +21,23 @@ const food = {
 const tree = document.querySelector('#tree');
 
 function createTree(element, data) {
-  // WRITE YOUR CODE HERE
-}
+  
+    const ul = document.createElement('ul');
+    ul.textContent = data.keys;
+
+    element.append(ul);
+
+    for (const key in data) {
+      const li = document.createElement('li');
+
+      li.textContent = key;
+      ul.append(li);
+
+      if (typeof data[key] === 'object') {
+        createTree(li, data[key]);
+      }
+    }
+  }
+
 
 createTree(tree, food);
