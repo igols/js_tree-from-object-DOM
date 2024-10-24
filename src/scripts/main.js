@@ -1,6 +1,6 @@
 'use strict';
 
- const food = {
+const food = {
   Drink: {
     Wine: {},
     Schnaps: {},
@@ -18,26 +18,25 @@
   },
 };
 
+document.body.insertAdjacentHTML('afterbegin', '<div id="tree"></div>');
+
 const tree = document.querySelector('#tree');
 
 function createTree(element, data) {
-  
-    const ul = document.createElement('ul');
-    ul.textContent = data.keys;
+  const ul = document.createElement('ul');
 
-    element.append(ul);
+  element.append(ul);
 
-    for (const key in data) {
-      const li = document.createElement('li');
+  for (const key in data) {
+    const li = document.createElement('li');
 
-      li.textContent = key;
-      ul.append(li);
+    li.textContent = key;
+    ul.append(li);
 
-      if (typeof data[key] === 'object') {
-        createTree(li, data[key]);
-      }
+    if (typeof data[key] === 'object') {
+      createTree(li, data[key]);
     }
   }
-
+}
 
 createTree(tree, food);
